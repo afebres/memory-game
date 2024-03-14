@@ -12,5 +12,5 @@ export default {
   PLAY_AGAIN: 'Play again',
   SUBMIT: 'Submit',
   WELCOME: 'Welcome',
-  WIN: 'Congratulations {{userName}}! \nYou won!',
+  WIN: 'Felicitaciones {{userName}}! \nYou won!',
 }

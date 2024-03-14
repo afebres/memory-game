@@ -1,11 +1,13 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../redux/store'
 import { getData } from '../redux/reducers/dataReducer'
-import { useTranslation } from 'react-i18next'
-import Card from '../components/card/card'
+import Card from '../components/card'
 import { ModalForm } from '../components/modalForm'
-import { ResultModal } from '../components/modalCongrat'
+import { ResultModal } from '../components/modalResult'
+import { useTranslation } from 'react-i18next'
+
 
 /**
  * Properties for the Home component.
@@ -42,7 +44,7 @@ const Home = (): JSX.Element => {
   }, [])
 
   useEffect(() => {
-    const allCards = data.map((entry) => ({
+    const allCards = data.map((entry: { meta: { uuid: string; name: string }; fields: { image: { url: string } } }) => ({
       uuid: entry.meta.uuid,
       image: entry.fields.image.url,
       name: entry.meta.name,
@@ -80,7 +82,7 @@ const Home = (): JSX.Element => {
               : card
           )
         )
-        setMatchesScore((prevScore) => prevScore + 1)
+        setMatchesScore((prevScore: number) => prevScore + 1)
 
         setSelectedCards([])
       } else {
@@ -95,7 +97,7 @@ const Home = (): JSX.Element => {
           setSelectedCards([])
         }, 1000)
 
-        setMismatchesScore((prevScore) => prevScore + 1)
+        setMismatchesScore((prevScore: number) => prevScore + 1)
       }
     }
   }, [selectedCards])
@@ -132,7 +134,7 @@ const Home = (): JSX.Element => {
    * Function to render cards.
    */
   const renderCards = () => {
-    const cardsPerRow = 4
+    const cardsPerRow = 5
     const rows = []
     for (let i = 0; i < cards.length; i += cardsPerRow) {
       const row = cards.slice(i, i + cardsPerRow)

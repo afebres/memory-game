@@ -14,6 +14,7 @@
     "@types/node": "^16.18.87",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
+    "@types/react-i18next": "^8.1.0",
     "@types/react-loader-spinner": "^4.0.0",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
@@ -58,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/react-redux": "^7.1.33"
   }
 }

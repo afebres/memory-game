@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+
 /**
  * Properties Modal Component.
  * @typedef {Object} CongratulationsModalProps
