@@ -6,7 +6,7 @@ export const getData = createAsyncThunk('data/getData', async (_, thunkAPI) => {
   try {
     const { data } = await axios.get(API_URL)
 
-    return data.entries.slice(0, 4)
+    return data.entries
   } catch (err) {
     return thunkAPI.rejectWithValue({
       errorMessage: err,

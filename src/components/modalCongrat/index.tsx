@@ -2,22 +2,33 @@ import React from 'react'
 import Button from '@mui/material/Button'
 import { Dialog, DialogActions, DialogContent } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+/**
+ * Properties for the ResultModal component.
+ * @typedef {Object} ResultModalProps
+ * @property {string} userName - User's name.
+ * @property {string} result - Game result ('win', 'lose', 'draw').
+ * @property {() => void} handleClose - Function to handle modal close.
+ * @property {() => void} onPlayAgain - Function to restart the game.
+ */
 
-type CongratulationsModalProps = {
-  onClose: () => void
+type ResultModalProps = {
   userName: string
   result: string
   handleClose: () => void
   onPlayAgain: () => void
 }
 
-const CongratulationsModal = ({
-  onClose,
+/**
+ * Modal component to display the game's result.
+ * @param {ResultModalProps} props - Props for the result Modal component.
+ * @returns {JSX.Element} Element representing the result modal.
+ */
+export const ResultModal = ({
   userName,
   result,
   handleClose,
   onPlayAgain,
-}: CongratulationsModalProps) => {
+}: ResultModalProps): JSX.Element => {
   const { t } = useTranslation()
   let message
 
@@ -36,7 +47,7 @@ const CongratulationsModal = ({
   }
 
   return (
-    <Dialog open={true} onClose={() => onClose && onClose()}>
+    <Dialog open={true}>
       <DialogContent>{message}</DialogContent>
       <DialogActions className='space-bd-flex justify-content-between'>
         <Button className='button secondary' onClick={handleClose}>
@@ -49,5 +60,3 @@ const CongratulationsModal = ({
     </Dialog>
   )
 }
-
-export default CongratulationsModal

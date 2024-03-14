@@ -8,19 +8,36 @@ import DialogTitle from '@mui/material/DialogTitle'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+/**
+ * Properties Modal Component.
+ * @typedef {Object} CongratulationsModalProps
+ * @property {() => void} onNameUpdate - Function to update the user's name
+ * @property  {boolean} isOpen - Flag to determine if the modal is open
+ */
+
 type ModalFormProps = {
   onNameUpdate: (newName: string) => void
   isOpen: boolean
 }
 
+/**
+ * modal form to enter the  user's name
+ *
+ * @param {ModalFormProps} props - Props for the ModalForm component
+ * @returns {JSX.Element} - JSX element representing the ModalForm component
+ */
+
 export const ModalForm: React.FC<ModalFormProps> = ({
   onNameUpdate,
   isOpen,
-}) => {
+}: ModalFormProps): JSX.Element => {
   const { t } = useTranslation()
 
   const [name, setName] = useState('')
 
+  /**
+   * Handles the close the modal
+   */
   const handleClose = () => {
     onNameUpdate(name)
   }

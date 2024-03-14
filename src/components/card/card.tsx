@@ -1,4 +1,15 @@
 import React from 'react'
+/**
+ * Properties for the Card component.
+ * @typedef {Object} CardProps
+ * @property {Object} item - Object containing card details.
+ * @property {string} item.uuid - Unique identifier for the card.
+ * @property {string} item.image - URL of the card image.
+ * @property {string} item.name - Name of the card.
+ * @property {boolean} item.flipped - Flag indicating if the card is flipped or not.
+ * @property {number} index - Index of the card.
+ * @property {Function} handleClick - Function to handle click event on the card.
+ */
 
 type CardProps = {
   item: {
@@ -10,6 +21,12 @@ type CardProps = {
   index: number
   handleClick: (id: string, index: number) => void
 }
+
+/**
+ * Card component to display the data detail (image).
+ * @param {CardProps} props - Props for the card component.
+ * @returns {JSX.Element} Element representing the card.
+ */
 
 const Card = ({ item, index, handleClick }: CardProps) => {
   const itemClass = item.flipped ? 'active' : ''

@@ -5,9 +5,19 @@ import { getData } from '../redux/reducers/dataReducer'
 import { useTranslation } from 'react-i18next'
 import Card from '../components/card/card'
 import { ModalForm } from '../components/modalForm'
-import CongratulationsModal from '../components/modalCongrat'
+import { ResultModal } from '../components/modalCongrat'
 
-const Home = () => {
+/**
+ * Properties for the Home component.
+ * @typedef {Object} HomeProps
+ */
+
+/**
+ * Home component to manage the game.
+ * @returns {JSX.Element} Element representing the home page.
+ */
+
+const Home = (): JSX.Element => {
   const dispatch: AppDispatch = useDispatch()
   const { t } = useTranslation()
   const { data, fetchingData, error } = useSelector(
@@ -19,8 +29,7 @@ const Home = () => {
   const [matchesScore, setMatchesScore] = useState<number>(0)
   const [result, setResult] = useState<string>('')
   const [userName, setUserName] = useState<string | null>(null)
-  const [showCongratulationsModal, setShowCongratulationsModal] =
-    useState(false)
+  const [showResultModal, setShowResultModal] = useState(false)
 
   useEffect(() => {
     getDataCards()
@@ -28,7 +37,7 @@ const Home = () => {
     if (storedUserName) {
       setUserName(storedUserName)
     } else {
-      openFormDialog()
+      openFormModal()
     }
   }, [])
 
@@ -55,7 +64,7 @@ const Home = () => {
           : 'lose'
 
       setResult(scoreResult)
-      setShowCongratulationsModal(true)
+      setShowResultModal(true)
     }
   }, [cards, matchesScore, mismatchesScore])
 
@@ -91,6 +100,9 @@ const Home = () => {
     }
   }, [selectedCards])
 
+  /**
+   * Function to get the data.
+   */
   const getDataCards = async () => {
     try {
       await dispatch(getData())
@@ -99,6 +111,9 @@ const Home = () => {
     }
   }
 
+  /**
+   * Function to handle clicks on cards.
+   */
   const handleClick = (id: string, index: number) => {
     if (cards[index].flipped || selectedCards.length === 2) {
       return
@@ -113,6 +128,9 @@ const Home = () => {
     )
   }
 
+  /**
+   * Function to render cards.
+   */
   const renderCards = () => {
     const cardsPerRow = 4
     const rows = []
@@ -149,21 +167,34 @@ const Home = () => {
     )
   }
 
-  const openFormDialog = () => {
+  /**
+   * Function to handle opening the user name input modal.
+   */
+  const openFormModal = () => {
     setUserName(null)
   }
 
+  /**
+   * Function to handle updating the user name.
+   * @param {string} newName - The new user name.
+   */
   const handleNameUpdate = (newName: string) => {
     setUserName(newName)
     localStorage.setItem('userName', newName)
   }
 
+  /**
+   * Function to handle closing the game result modal.
+   */
   const handleClose = () => {
-    setShowCongratulationsModal(false)
+    setShowResultModal(false)
   }
 
+  /**
+   * Function to play the game again.
+   */
   const handlePlayAgain = () => {
-    setShowCongratulationsModal(false)
+    setShowResultModal(false)
     setMatchesScore(0)
     setMismatchesScore(0)
 
@@ -185,9 +216,8 @@ const Home = () => {
         )}
       </div>
 
-      {showCongratulationsModal && userName && (
-        <CongratulationsModal
-          onClose={() => setShowCongratulationsModal(false)}
+      {showResultModal && userName && (
+        <ResultModal
           userName={userName}
           result={result}
           handleClose={handleClose}
