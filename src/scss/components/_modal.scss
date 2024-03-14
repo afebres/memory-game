@@ -1,0 +1,32 @@
+.MuiPaper-root.MuiDialog-paper {
+  max-height: 40rem;
+  max-width: 40rem;
+  min-height: 30rem;
+  min-width: 30rem;
+  white-space: pre-line;
+}
+.MuiDialog-root .MuiDialogTitle-root,
+.MuiDialog-root .MuiDialogContent-root {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.MuiDialog-root .MuiDialogContent-root .MuiInputBase-input {
+  padding-top: 4rem;
+  font-size: 2rem;
+}
+
+.MuiDialogActions-root .MuiButton-root {
+  text-transform: capitalize;
+  color: $color-black;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+.MuiDialogActions-root .MuiButton-root.primary {
+  color: $color-black;
+}
+
+.MuiDialogActions-root .MuiButton-root.secondary {
+  color: $color-gray;
+}

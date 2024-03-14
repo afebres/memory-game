@@ -1,0 +1,29 @@
+.card {
+  background: radial-gradient(circle, #3498db, #2980b9, #2c3e50);
+  width: 20rem;
+  height: 25rem;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  border-style: double;
+  border-color: #2c3e50;
+  border-width: 15px;
+  img {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform: scale(0);
+    animation: 2s hideImage linear;
+  }
+}
+
+.card.active {
+  transform: rotateY(0);
+  img {
+    transform: scale(1);
+  }
+}
+.card-back {
+  color: $color-black;
+  font-size: 15rem;
+}
